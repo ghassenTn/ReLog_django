@@ -1,0 +1,16 @@
+<!-- login.html -->
+
+<form method="post">
+    {% csrf_token %}
+    <label for="username">Username (Name):</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password (Age):</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Login</button>
+</form>
+
+{% if error_message %}
+    <p>{{ error_message }}</p>
+{% endif %}
