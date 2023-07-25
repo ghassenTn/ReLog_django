@@ -18,7 +18,7 @@ def register_client(request):
             form.instance.ip = ip_address
 
             form.save()  # Save the form data to the database
-            #return render(request,'success.html')  # Redirect to a success page after saving
+            return render(request,'success.html')  # Redirect to a success page after saving
     else:
         form = Client()
 
