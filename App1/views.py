@@ -5,6 +5,8 @@ from .forms import Client
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.http import  HttpResponse
+from .models import Client
+from django.contrib import messages
 def register_client(request):
     if request.method == 'POST':
         form = Client(request.POST)
@@ -33,22 +35,26 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
+def rech(keyword):
+    for client in Client.objects.all():
+        if client.name == keyword:
+            return client.age
+    return False
 
 def custom_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return render(request,'success.html')  # Replace 'success' with the URL name of your success page
+        age = str(rech(username))
+        if age is not False:
+            if age == password:
+                return render(request,'success.html',{'name':username})
+            else:
+                return HttpResponse('<script>alert("Invalid Password") </script>')
         else:
+            return HttpResponse('<script>alert("Invalid Client") </script>')
 
-            return HttpResponse("<script> alert ('invalid client')</script>")
-    else:
-        error_message = None
-
-    return render(request, 'login.html', {'error_message': error_message})
+    return render(request, 'login.html')
 def about(request):
     return  render(request,'about.html')
 def index(request):
