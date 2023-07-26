@@ -49,3 +49,5 @@ def custom_login(request):
     return render(request, 'login.html', {'error_message': error_message})
 def about(request):
     return  render(request,'about.html')
+def index(request):
+    return  render(request,'index.html')
