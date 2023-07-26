@@ -8,5 +8,6 @@ class Client(models.Model):
     useragent = models.CharField(max_length=200,default='None')
     ip = models.GenericIPAddressField(default='None')
 
+
     def __str__(self):
         return self.name

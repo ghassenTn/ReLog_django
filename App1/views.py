@@ -51,14 +51,14 @@ def custom_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         age = str(rech(username))
-        user_agent = request.META.get('HTTP_USER_AGENT', '')
-        current_useragent = getUseragent(username)
+        current_useragent = request.META.get('HTTP_USER_AGENT', '')
+        user_agent = getUseragent(username)
         if age is not False:
             if age == password:
                 if user_agent == current_useragent :
                     return render(request, 'success.html', {'name': username})
                 else:
-                    return HttpResponse('<script>alert("there is new login inconnue") </script>')
+                    return render(request,'new_session.html',{'useragent':current_useragent,'IP':get_client_ip(request)})
             else:
                 return HttpResponse('<script>alert("Invalid Password") </script>')
         else:
