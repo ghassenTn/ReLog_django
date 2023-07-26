@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from .forms import Client
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from django.http import  HttpResponse
 def register_client(request):
     if request.method == 'POST':
         form = Client(request.POST)
@@ -42,7 +43,8 @@ def custom_login(request):
             login(request, user)
             return render(request,'success.html')  # Replace 'success' with the URL name of your success page
         else:
-            error_message = "Invalid username or age."
+
+            return HttpResponse("<script> alert ('invalid client')</script>")
     else:
         error_message = None
 
