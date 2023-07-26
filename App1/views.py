@@ -12,7 +12,6 @@ def register_client(request):
             user_agent = request.META.get('HTTP_USER_AGENT', '')
             # Get the client's IP address from the request
             ip_address = get_client_ip(request)
-
             # Save the user agent and IP address to the form before saving
             form.instance.useragent = user_agent
             form.instance.ip = ip_address
@@ -21,7 +20,6 @@ def register_client(request):
             return render(request,'success.html')  # Redirect to a success page after saving
     else:
         form = Client()
-
     return render(request, 'registration_form.html', {'form': form})
 
 
@@ -49,3 +47,5 @@ def custom_login(request):
         error_message = None
 
     return render(request, 'login.html', {'error_message': error_message})
+def about(request):
+    return  render(request,'about.html')
