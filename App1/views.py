@@ -40,15 +40,25 @@ def rech(keyword):
         if client.name == keyword:
             return client.age
     return False
+def getUseragent(keyword):
+    for client in Client.objects.all():
+        if client.name == keyword:
+            return client.useragent
+    return False
 
 def custom_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         age = str(rech(username))
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
+        current_useragent = getUseragent(username)
         if age is not False:
             if age == password:
-                return render(request,'success.html',{'name':username})
+                if user_agent == current_useragent :
+                    return render(request, 'success.html', {'name': username})
+                else:
+                    return HttpResponse('<script>alert("there is new login inconnue") </script>')
             else:
                 return HttpResponse('<script>alert("Invalid Password") </script>')
         else:
