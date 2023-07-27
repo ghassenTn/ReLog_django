@@ -8,5 +8,6 @@ urlpatterns = [
     path('login/', views.custom_login, name='login'),
     path('about/', views.about, name='about'),
     path('', views.index, name='index'),
+    path('register/success', views.success, name='success'),
     # Add other URL patterns as needed
 ]

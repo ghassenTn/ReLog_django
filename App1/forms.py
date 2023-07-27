@@ -1,10 +1,9 @@
 # forms.py
 # forms.py
-
 from django import forms
 from .models import Client
 
-class Client(forms.ModelForm):
+class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ['name', 'age']  # Include other fields from the model if needed

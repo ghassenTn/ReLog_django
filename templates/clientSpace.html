@@ -1,0 +1,31 @@
+{% extends 'parts/base.html' %}
+{% block content %}
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Page</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Clients</h1>
+        <div class="client-card">
+            <img src="https://th.bing.com/th/id/R.813fb6cec641b45d622257f664dae107?rik=t9zzUAbMmGM02Q&pid=ImgRaw&r=0" alt="Client 1">
+            <h2>welcome : {{ name }}</h2>
+            <p>Age: {{ age }}</p>
+            <p>Email: {{ name }}.doe@gmail.com</p>
+        </div>
+        <div class="client-card">
+            <img src="client2.jpg" alt="Client 2">
+            <h2>name : {{ name }}</h2>
+            <p>Age: {{age}}</p>
+            <p>Email: {{name}}.smith@gmail.com</p>
+        </div>
+        <!-- Add more client cards here if needed -->
+    </div>
+</body>
+</html>
+
+{% endblock %}
